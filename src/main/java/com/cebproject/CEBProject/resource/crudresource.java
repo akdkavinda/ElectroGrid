@@ -33,4 +33,13 @@ public class crudresource {
 		return service.getbranch();
 		
 	}
+	
+	
+	@Path("/retrieveById/{id}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<crudmodel>  getBranch(@PathParam("id") int id) throws SQLException {
+		return service.getbranchById(id);
+		
+	}
 }

@@ -69,4 +69,25 @@ public class crudservice {
 		
 		return data;
 	}
+	
+	public ArrayList<crudmodel> getbranchById(int id) throws SQLException{
+		
+		ArrayList<crudmodel> data = new ArrayList<crudmodel>();
+		
+		String select = "select * from branch where id =?";
+		PreparedStatement ps = con.prepareStatement(select);
+		ps.setInt(1, id);
+		ResultSet rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			crudmodel model = new crudmodel();
+			
+			model.setBranchName(rs.getString("branchName"));
+			model.setLocation(rs.getString("location"));
+			
+			data.add(model);
+		}
+		
+		return data;
+	}
 }
