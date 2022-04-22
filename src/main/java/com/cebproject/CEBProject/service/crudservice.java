@@ -90,4 +90,22 @@ public class crudservice {
 		
 		return data;
 	}
+	
+	public crudmodel updateBranch(crudmodel branch) {
+		String insert = "update branch set branchName= ? , location= ? where id =? ";
+		
+		try {
+			PreparedStatement ps = con.prepareStatement(insert);
+			ps.setString(1, branch.getBranchName());
+			ps.setString(2, branch.getLocation());
+			ps.setInt(3, branch.getId());
+			
+			
+			ps.executeUpdate();
+		}catch(Exception e) {
+			System.out.println(e +" data insert unsuccess");
+		}
+		
+		return branch;
+	}
 }

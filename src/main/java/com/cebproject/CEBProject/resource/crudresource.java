@@ -42,4 +42,11 @@ public class crudresource {
 		return service.getbranchById(id);
 		
 	}
+	
+	@Path("/updatebranch")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public crudmodel updateBranch(crudmodel branch) {
+		return service.updateBranch(branch);
+	}
 }
