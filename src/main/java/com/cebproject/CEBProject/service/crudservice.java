@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cebproject.CEBProject.model.crudmodel;
 
@@ -45,5 +48,25 @@ public class crudservice {
 		}
 		
 		return branch;
+	}
+	
+	public ArrayList<crudmodel> getbranch() throws SQLException{
+		
+		ArrayList<crudmodel> data = new ArrayList<crudmodel>();
+		
+		String select = "select * from branch";
+		PreparedStatement ps = con.prepareStatement(select);
+		ResultSet rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			crudmodel model = new crudmodel();
+			
+			model.setBranchName(rs.getString("branchName"));
+			model.setLocation(rs.getString("location"));
+			
+			data.add(model);
+		}
+		
+		return data;
 	}
 }
